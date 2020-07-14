@@ -33,15 +33,21 @@ class FileBrowserViewController: UIViewController {
         }
         return controller
     }()
+    
+    private var directory: Directory? {
+        return fetchedResultsController.fetchedObjects?.first
+    }
 
-
+    
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initialSetup()
-        load()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        load()
+    }
     
     @objc func load() {
         spinner.startAnimating()
@@ -51,6 +57,13 @@ class FileBrowserViewController: UIViewController {
                 self.handleFetchOperationCompletion(error: error)
             }
         }
+    }
+    
+    @objc func upload() {
+        let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
+        documentPicker.delegate = self
+        documentPicker.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(documentPicker, animated: true, completion: nil)
     }
 }
 
@@ -86,7 +99,10 @@ extension FileBrowserViewController {
         spinner.color = .gray
         
         let barButton = UIBarButtonItem(customView: spinner)
-        self.navigationItem.setRightBarButton(barButton, animated: true)
+        let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(upload))
+        //self.navigationItem.setRightBarButton(barButton, animated: true)
+        //self.navigationItem.setLeftBarButton(uploadButton, animated: true)
+        self.navigationItem.setRightBarButtonItems([barButton, uploadButton], animated: true)
 
         setupSearchBar()
     }
@@ -107,7 +123,7 @@ extension FileBrowserViewController {
 extension FileBrowserViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let directory = fetchedResultsController.fetchedObjects?.first else { return 0 }
+        guard let directory = directory else { return 0 }
         return directory.directories.count + directory.files.count
     }
     
@@ -115,7 +131,7 @@ extension FileBrowserViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         //TODO: Refactor
-        guard let directory = fetchedResultsController.fetchedObjects?.first else { return cell }
+        guard let directory = directory else { return cell }
         let directories = directory.directoriesArray.sorted { $0.name < $1.name }
         let files = directory.filesArray.sorted { $0.name < $1.name }
         
@@ -150,7 +166,7 @@ extension FileBrowserViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         //TODO: Refactor
-        guard let directory = fetchedResultsController.fetchedObjects?.first else { return }
+        guard let directory = directory else { return }
         let directories = directory.directoriesArray.sorted { $0.name < $1.name }
         let files = directory.filesArray.sorted { $0.name < $1.name }
         
@@ -182,8 +198,29 @@ extension FileBrowserViewController: NSFetchedResultsControllerDelegate {
     private func handleFetchOperationCompletion(error: Error?) {
         if let error = error {
             print(error)
-            let title = "Error while fetching files"
-            let alert = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .alert)
+            
+            let alert = UIAlertController(
+                title: "Fetch failed",
+                message: "An error occured while trying to fetch the content for this directory.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        } else {
+            resetAndRefetch()
+            tableView.reloadData()
+        }
+    }
+    
+    private func handleUploadOperationCompletion(error: Error?) {
+        if let error = error {
+            print(error)
+            
+            let alert = UIAlertController(
+                title: "Upload failed",
+                message: "An error occured while trying to upload your file to the server.",
+                preferredStyle: .alert
+            )
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         } else {
@@ -253,6 +290,42 @@ extension FileBrowserViewController: UIDocumentInteractionControllerDelegate {
         documentInteractionController.delegate = self
         DispatchQueue.main.async {
             self.documentInteractionController.presentPreview(animated: true)
+        }
+    }
+}
+
+
+
+// MARK: - UIDocumentPickerDelegate
+extension FileBrowserViewController: UIDocumentPickerDelegate {
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let path = path, let url = urls.first else { return }
+        
+        let fileName = url.deletingPathExtension().lastPathComponent
+        let mimeType = NetworkManager.shared.mimeTypeForPath(path: url.path)
+        
+        guard let directory = directory else { return }
+        guard !directory.files.contains(where: { fileName == $0.name && mimeType == $0.mime }) else {
+            let alert = UIAlertController(
+                title: "File already exists",
+                message: "Replacing existing files is not supported yet.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        //TODO: Refactor
+        NetworkManager.shared.upload(path: path, fileUrl: url) { result in
+            DispatchQueue.main.async {
+                if case .failure(let error) = result {
+                    self.handleUploadOperationCompletion(error: error)
+                } else {
+                    self.handleUploadOperationCompletion(error: nil)
+                }
+            }
         }
     }
 }

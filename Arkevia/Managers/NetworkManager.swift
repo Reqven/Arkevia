@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MobileCoreServices
 
 class NetworkManager {
     
@@ -101,7 +102,71 @@ extension NetworkManager {
             }
         }
     }
+
     
+    //TODO: Refactor
+    func upload(path: String, fileUrl: URL, completed: @escaping (Result<Any, Error>) -> Void) {
+        
+        loadUser { result in
+            switch(result) {
+                case .failure(let error):
+                    completed(.failure(error))
+                case .success(_):
+                    
+                    guard let fileData = try? Data(contentsOf: fileUrl) else {
+                        completed(.failure(NSError(domain: "Data", code: 0)))
+                        return
+                    }
+                    var requestData = Data()
+                    let boundary = UUID().uuidString
+                    let fileName = fileUrl.lastPathComponent
+                    let mimeType = self.mimeTypeForPath(path: fileUrl.path)
+                    
+                    let url = URL(string: "https://www.arkevia.com/safe-secured/browser/upload")!
+                    var urlRequest = URLRequest(url: url)
+                    urlRequest.httpMethod = "POST"
+                    urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+                    
+                    // Form-data content
+                    requestData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+                    requestData.append("Content-Disposition: form-data; name=\"keywords\"\r\n\r\n".data(using: .utf8)!)
+                    requestData.append("".data(using: .utf8)!)
+
+                    requestData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+                    requestData.append("Content-Disposition: form-data; name=\"target\"\r\n\r\n".data(using: .utf8)!)
+                    requestData.append(path.data(using: .utf8)!)
+
+                    requestData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+                    requestData.append("Content-Disposition: form-data; name=\"upload\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+                    requestData.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+                    requestData.append(fileData)
+                    
+                    requestData.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+
+                    
+                    let task = URLSession.shared.uploadTask(with: urlRequest, from: requestData, completionHandler: { data, response, error in
+                        if let error = error {
+                            completed(.failure(error))
+                            return
+                        }
+                        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                            completed(.failure(NSError(domain: "Bad Response", code: 0)))
+                            return
+                        }
+                        guard let data = data else {
+                            completed(.failure(NSError(domain: "No response data", code: 0)))
+                            return
+                        }
+                        guard !String(decoding: data, as: UTF8.self).contains("error") else {
+                            completed(.failure(NSError(domain: "Unknown error", code: 0)))
+                            return
+                        }
+                        completed(.success(true))
+                    })
+                    task.resume()
+            }
+        }
+    }
     
     
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
@@ -128,5 +193,18 @@ extension NetworkManager {
             completed(image)
         }
         task.resume()
+    }
+    
+    //TODO: Refactor and move out of this file
+    func mimeTypeForPath(path: String) -> String {
+        let url = NSURL(fileURLWithPath: path)
+        let pathExtension = url.pathExtension
+
+        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension! as NSString, nil)?.takeRetainedValue() {
+            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+                return mimetype as String
+            }
+        }
+        return "application/octet-stream"
     }
 }

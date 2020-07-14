@@ -68,9 +68,11 @@ class DirectoryProvider {
             directory.name = DirectoryProvider.rootName
             directory.path = DirectoryProvider.rootPath
         }
-        if let notIn = fetchNotIn(directory: directory, context: context) {
+        /*if let notIn = fetchNotIn(directory: directory, context: context) {
             context.delete(objects: notIn)
-        }
+        }*/
+        context.delete(objects: fetchNotIn(directory: directory, context: context))
+        
         if let cached = fetchPersisted(path: directory.path, context: context) {
             if let parent = cached.parent {
                 directory.parent = parent
@@ -91,15 +93,27 @@ class DirectoryProvider {
     }
     
     
-    private func fetchNotIn(directory: Directory, context: NSManagedObjectContext) -> [Directory]? {
-        let request = Directory.createFetchRequest()
-        request.predicate = NSPredicate(format: "parent.path == %@", directory.path)
-        request.includesPendingChanges = false
+    private func fetchNotIn(directory: Directory, context: NSManagedObjectContext) -> [NSManagedObject] {
+        let directoryRequest = Directory.createFetchRequest()
+        directoryRequest.predicate = NSPredicate(format: "parent.path == %@", directory.path)
+        directoryRequest.includesPendingChanges = false
         
-        guard let results = try? context.fetch(request) else { return nil }
-        return results.filter { (dir) -> Bool in
-            return !directory.directoriesArray.contains(where: { dir.path == $0.path })
+        let fileRequest = File.createFetchRequest()
+        fileRequest.predicate = NSPredicate(format: "directory.path == %@", directory.path)
+        fileRequest.includesPendingChanges = false
+        
+        var found = [NSManagedObject]()
+        if let results = try? context.fetch(directoryRequest) {
+            found.append(contentsOf: results.filter { dir -> Bool in
+                return !directory.directoriesArray.contains(where: { dir.path == $0.path })
+            })
         }
+        if let results = try? context.fetch(fileRequest) {
+            found.append(contentsOf: results.filter { file -> Bool in
+                return !directory.filesArray.contains(where: { file.name == $0.name && file.mime == $0.mime })
+            })
+        }
+        return found
     }
     
     
