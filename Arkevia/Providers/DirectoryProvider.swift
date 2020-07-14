@@ -68,7 +68,10 @@ class DirectoryProvider {
             directory.name = DirectoryProvider.rootName
             directory.path = DirectoryProvider.rootPath
         }
-        if let cached = self.fetchPersisted(path: directory.path, context: context) {
+        if let notIn = fetchNotIn(directory: directory, context: context) {
+            context.delete(objects: notIn)
+        }
+        if let cached = fetchPersisted(path: directory.path, context: context) {
             if let parent = cached.parent {
                 directory.parent = parent
             }
@@ -87,7 +90,19 @@ class DirectoryProvider {
         return item
     }
     
-    //TODO: Sync Core Data by deleting directories that don't exist anymore
+    
+    private func fetchNotIn(directory: Directory, context: NSManagedObjectContext) -> [Directory]? {
+        let request = Directory.createFetchRequest()
+        request.predicate = NSPredicate(format: "parent.path == %@", directory.path)
+        request.includesPendingChanges = false
+        
+        guard let results = try? context.fetch(request) else { return nil }
+        return results.filter { (dir) -> Bool in
+            return !directory.directoriesArray.contains(where: { dir.path == $0.path })
+        }
+    }
+    
+    
     func fetchDirectory(for path: String? = nil, completionHandler: @escaping (Error?) -> Void) {
         
         let queryItems = [
@@ -162,4 +177,3 @@ class DirectoryProvider {
         }
     }
 }
-

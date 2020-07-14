@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB416BF824BDDEDE00330456 /* NSManagedObjectContext+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB416BF724BDDEDE00330456 /* NSManagedObjectContext+Ext.swift */; };
 		BB4474F224B4E813009DC081 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4474F124B4E813009DC081 /* AppDelegate.swift */; };
 		BB4474F424B4E813009DC081 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4474F324B4E813009DC081 /* SceneDelegate.swift */; };
 		BB4474F624B4E813009DC081 /* FileBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4474F524B4E813009DC081 /* FileBrowserViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB416BF724BDDEDE00330456 /* NSManagedObjectContext+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Ext.swift"; sourceTree = "<group>"; };
 		BB4474EE24B4E813009DC081 /* Arkevia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arkevia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4474F124B4E813009DC081 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB4474F324B4E813009DC081 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			children = (
 				BBC5C3E524BCDAD80058E249 /* UIView+Ext.swift */,
 				BBC5C3EA24BCEBD80058E249 /* UIStackView+Ext.swift */,
+				BB416BF724BDDEDE00330456 /* NSManagedObjectContext+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				BBCC63F124B4EDCA0002233F /* NetworkManager.swift in Sources */,
 				BBC5C3EF24BD3B930058E249 /* Temp.swift in Sources */,
 				BBFF19CE24B7C09D00C457DB /* File+CoreDataClass.swift in Sources */,
+				BB416BF824BDDEDE00330456 /* NSManagedObjectContext+Ext.swift in Sources */,
 				BBC5C3EB24BCEBD80058E249 /* UIStackView+Ext.swift in Sources */,
 				BBC4F04024B855DB00CA66DE /* DirectoryProvider.swift in Sources */,
 				BB4474F424B4E813009DC081 /* SceneDelegate.swift in Sources */,

@@ -36,8 +36,8 @@ extension Directory {
     @NSManaged public var rename: Bool
     
     @NSManaged public var parent: Directory?
-    @NSManaged public var directories: NSSet
-    @NSManaged public var files: NSSet
+    @NSManaged public var directories: Set<Directory>
+    @NSManaged public var files: Set<File>
 
 }
 

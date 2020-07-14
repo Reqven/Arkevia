@@ -13,6 +13,13 @@ import CoreData
 @objc(Directory)
 public class Directory: NSManagedObject, Codable {
     
+    public var directoriesArray: [Directory] {
+        return Array(self.directories)
+    }
+    public var filesArray: [File] {
+        return Array(self.files)
+    }
+    
     enum CodingKeys: String, CodingKey {
         case name
         case path = "techid"
@@ -65,8 +72,8 @@ public class Directory: NSManagedObject, Codable {
             self.write             = try container.decodeIfPresent(Bool.self, forKey: .write) ?? false
             self.rename            = try container.decodeIfPresent(Bool.self, forKey: .rename) ?? false
             
-            self.directories = NSSet()
-            self.files = NSSet()
+            self.directories = Set()
+            self.files = Set()
         } catch {
             context.delete(self)
             throw error

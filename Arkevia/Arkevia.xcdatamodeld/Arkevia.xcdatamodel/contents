@@ -18,7 +18,7 @@
         <attribute name="write" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="directories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Directory" inverseName="parent" inverseEntity="Directory"/>
         <relationship name="files" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="directory" inverseEntity="File"/>
-        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Directory" inverseName="directories" inverseEntity="Directory"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Directory" inverseName="directories" inverseEntity="Directory"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="path"/>

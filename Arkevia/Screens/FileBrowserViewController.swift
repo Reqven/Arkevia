@@ -114,12 +114,9 @@ extension FileBrowserViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         //TODO: Refactor
-        guard let directory = fetchedResultsController.fetchedObjects?.first,
-              var directories = directory.directories.allObjects as? [Directory],
-              var files = directory.files.allObjects as? [File] else { return cell }
-        
-        directories.sort { $0.name < $1.name }
-        files.sort { $0.name < $1.name }
+        guard let directory = fetchedResultsController.fetchedObjects?.first else { return cell }
+        let directories = directory.directoriesArray.sorted { $0.name < $1.name }
+        let files = directory.filesArray.sorted { $0.name < $1.name }
         
         switch indexPath.row {
             case let index where index < directories.count:
@@ -152,12 +149,9 @@ extension FileBrowserViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         //TODO: Refactor
-        guard let directory = fetchedResultsController.fetchedObjects?.first,
-              var directories = directory.directories.allObjects as? [Directory],
-              var files = directory.files.allObjects as? [File] else { return }
-        
-        directories.sort { $0.name < $1.name }
-        files.sort { $0.name < $1.name }
+        guard let directory = fetchedResultsController.fetchedObjects?.first else { return }
+        let directories = directory.directoriesArray.sorted { $0.name < $1.name }
+        let files = directory.filesArray.sorted { $0.name < $1.name }
         
         switch indexPath.row {
             case let index where index < directories.count:

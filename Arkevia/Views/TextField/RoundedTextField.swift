@@ -25,7 +25,6 @@ class RoundedTextField: UITextField {
         layer.cornerRadius = 5
         layer.borderWidth = 1
         layer.borderColor = UIColor.systemGray5.cgColor
-        adjustsFontSizeToFitWidth = true
         minimumFontSize = 12
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowRadius = 10

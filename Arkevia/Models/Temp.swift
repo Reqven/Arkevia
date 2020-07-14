@@ -44,7 +44,7 @@ class Root: Decodable {
             return
         }
         let treeContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .tree)
-        cwd.directories = NSSet(array: try treeContainer.decode([Directory].self, forKey: .dirs))
+        cwd.directories = Set(try treeContainer.decode([Directory].self, forKey: .dirs))
     }
 }
 

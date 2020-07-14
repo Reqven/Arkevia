@@ -16,12 +16,10 @@ class LoginViewController: UIViewController {
     private var passwordField = RoundedTextField()
     private var loginButton = RoundedButton()
     
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
     }
-    
     
     @objc private func login() {
         let username = usernameField.text!, password = passwordField.text!
@@ -55,13 +53,11 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
     private func saveCredentials() {
         let username = usernameField.text!, password = passwordField.text!
         KeychainWrapper.standard.set(username, forKey: "username")
         KeychainWrapper.standard.set(password, forKey: "password")
     }
-    
     
     private func initialSetup() {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -82,6 +78,7 @@ class LoginViewController: UIViewController {
         
         usernameField.placeholder = "Username"
         usernameField.textContentType = .username
+        usernameField.autocapitalizationType = .none
         usernameField.text = KeychainWrapper.standard.string(forKey: "username")
         
         passwordField.placeholder = "Password"
