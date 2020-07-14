@@ -68,13 +68,14 @@ extension FileBrowserViewController {
     
     private func setupTableView() {
         tableView = UITableView(frame: view.bounds, style: .plain)
-        tableView.tableFooterView = UIView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
+        tableView.tableFooterView = UIView()
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
+        tableView.pinToEdges(of: view)
     }
     
     private func setupNavigationBar() {
