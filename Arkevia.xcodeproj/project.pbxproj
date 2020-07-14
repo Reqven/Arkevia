@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB4474F224B4E813009DC081 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4474F124B4E813009DC081 /* AppDelegate.swift */; };
+		BB4474F424B4E813009DC081 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4474F324B4E813009DC081 /* SceneDelegate.swift */; };
+		BB4474F624B4E813009DC081 /* FileBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4474F524B4E813009DC081 /* FileBrowserViewController.swift */; };
+		BB4474FC24B4E813009DC081 /* Arkevia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB4474FA24B4E813009DC081 /* Arkevia.xcdatamodeld */; };
+		BB4474FE24B4E815009DC081 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4474FD24B4E815009DC081 /* Assets.xcassets */; };
+		BB44750124B4E815009DC081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4474FF24B4E815009DC081 /* LaunchScreen.storyboard */; };
+		BB8C2E6024BC1A8D00F41EAC /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C2E5E24BC1A8D00F41EAC /* KeychainItemAccessibility.swift */; };
+		BB8C2E6124BC1A8D00F41EAC /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C2E5F24BC1A8D00F41EAC /* KeychainWrapper.swift */; };
+		BBC4F04024B855DB00CA66DE /* DirectoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4F03F24B855DB00CA66DE /* DirectoryProvider.swift */; };
+		BBC4F04424B940FB00CA66DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4F04324B940FB00CA66DE /* LoginViewController.swift */; };
+		BBC5C3E624BCDAD80058E249 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C3E524BCDAD80058E249 /* UIView+Ext.swift */; };
+		BBC5C3E924BCDC080058E249 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C3E824BCDC080058E249 /* RoundedButton.swift */; };
+		BBC5C3EB24BCEBD80058E249 /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C3EA24BCEBD80058E249 /* UIStackView+Ext.swift */; };
+		BBC5C3ED24BCF3E40058E249 /* RoundedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C3EC24BCF3E40058E249 /* RoundedTextField.swift */; };
+		BBC5C3EF24BD3B930058E249 /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC5C3EE24BD3B930058E249 /* Temp.swift */; };
+		BBCC63F124B4EDCA0002233F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCC63F024B4EDCA0002233F /* NetworkManager.swift */; };
+		BBFF19C824B7BFF400C457DB /* Directory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF19C424B7BFF400C457DB /* Directory+CoreDataClass.swift */; };
+		BBFF19C924B7BFF400C457DB /* Directory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF19C524B7BFF400C457DB /* Directory+CoreDataProperties.swift */; };
+		BBFF19CE24B7C09D00C457DB /* File+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF19CC24B7C09D00C457DB /* File+CoreDataClass.swift */; };
+		BBFF19CF24B7C09D00C457DB /* File+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF19CD24B7C09D00C457DB /* File+CoreDataProperties.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BB4474EE24B4E813009DC081 /* Arkevia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arkevia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB4474F124B4E813009DC081 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BB4474F324B4E813009DC081 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		BB4474F524B4E813009DC081 /* FileBrowserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserViewController.swift; sourceTree = "<group>"; };
+		BB4474FB24B4E813009DC081 /* Arkevia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Arkevia.xcdatamodel; sourceTree = "<group>"; };
+		BB4474FD24B4E815009DC081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB44750024B4E815009DC081 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BB44750224B4E815009DC081 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB8C2E5E24BC1A8D00F41EAC /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		BB8C2E5F24BC1A8D00F41EAC /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		BBC4F03F24B855DB00CA66DE /* DirectoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryProvider.swift; sourceTree = "<group>"; };
+		BBC4F04324B940FB00CA66DE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BBC5C3E524BCDAD80058E249 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		BBC5C3E824BCDC080058E249 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		BBC5C3EA24BCEBD80058E249 /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
+		BBC5C3EC24BCF3E40058E249 /* RoundedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextField.swift; sourceTree = "<group>"; };
+		BBC5C3EE24BD3B930058E249 /* Temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
+		BBCC63F024B4EDCA0002233F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		BBFF19C424B7BFF400C457DB /* Directory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Directory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BBFF19C524B7BFF400C457DB /* Directory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Directory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BBFF19CC24B7C09D00C457DB /* File+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BBFF19CD24B7C09D00C457DB /* File+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+CoreDataProperties.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB4474EB24B4E813009DC081 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB4474E524B4E813009DC081 = {
+			isa = PBXGroup;
+			children = (
+				BB4474F024B4E813009DC081 /* Arkevia */,
+				BB4474EF24B4E813009DC081 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB4474EF24B4E813009DC081 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB4474EE24B4E813009DC081 /* Arkevia.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB4474F024B4E813009DC081 /* Arkevia */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C3E324BCDA9B0058E249 /* Extensions */,
+				BBC4F04524B9412400CA66DE /* Managers */,
+				BBC4F04624B9414D00CA66DE /* Models */,
+				BBC4F04124B9408B00CA66DE /* Providers */,
+				BBC4F04224B9409600CA66DE /* Screens */,
+				BB8C2E5D24BC1A5F00F41EAC /* Security */,
+				BBC5C3E424BCDAA10058E249 /* Views */,
+				BB4474F124B4E813009DC081 /* AppDelegate.swift */,
+				BB4474F324B4E813009DC081 /* SceneDelegate.swift */,
+				BB4474FD24B4E815009DC081 /* Assets.xcassets */,
+				BB4474FF24B4E815009DC081 /* LaunchScreen.storyboard */,
+				BB44750224B4E815009DC081 /* Info.plist */,
+				BB4474FA24B4E813009DC081 /* Arkevia.xcdatamodeld */,
+			);
+			path = Arkevia;
+			sourceTree = "<group>";
+		};
+		BB8C2E5D24BC1A5F00F41EAC /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				BB8C2E5E24BC1A8D00F41EAC /* KeychainItemAccessibility.swift */,
+				BB8C2E5F24BC1A8D00F41EAC /* KeychainWrapper.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		BBC4F04124B9408B00CA66DE /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				BBC4F03F24B855DB00CA66DE /* DirectoryProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		BBC4F04224B9409600CA66DE /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				BBC4F04324B940FB00CA66DE /* LoginViewController.swift */,
+				BB4474F524B4E813009DC081 /* FileBrowserViewController.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		BBC4F04524B9412400CA66DE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BBCC63F024B4EDCA0002233F /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		BBC4F04624B9414D00CA66DE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BBFF19CC24B7C09D00C457DB /* File+CoreDataClass.swift */,
+				BBFF19CD24B7C09D00C457DB /* File+CoreDataProperties.swift */,
+				BBFF19C424B7BFF400C457DB /* Directory+CoreDataClass.swift */,
+				BBFF19C524B7BFF400C457DB /* Directory+CoreDataProperties.swift */,
+				BBC5C3EE24BD3B930058E249 /* Temp.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BBC5C3E324BCDA9B0058E249 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C3E524BCDAD80058E249 /* UIView+Ext.swift */,
+				BBC5C3EA24BCEBD80058E249 /* UIStackView+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BBC5C3E424BCDAA10058E249 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C3F024BD3F470058E249 /* TextField */,
+				BBC5C3E724BCDB430058E249 /* Buttons */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BBC5C3E724BCDB430058E249 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C3E824BCDC080058E249 /* RoundedButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		BBC5C3F024BD3F470058E249 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				BBC5C3EC24BCF3E40058E249 /* RoundedTextField.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB4474ED24B4E813009DC081 /* Arkevia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB44750524B4E815009DC081 /* Build configuration list for PBXNativeTarget "Arkevia" */;
+			buildPhases = (
+				BB4474EA24B4E813009DC081 /* Sources */,
+				BB4474EB24B4E813009DC081 /* Frameworks */,
+				BB4474EC24B4E813009DC081 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Arkevia;
+			productName = Arkevia;
+			productReference = BB4474EE24B4E813009DC081 /* Arkevia.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB4474E624B4E813009DC081 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Manu Marchand";
+				TargetAttributes = {
+					BB4474ED24B4E813009DC081 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = BB4474E924B4E813009DC081 /* Build configuration list for PBXProject "Arkevia" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB4474E524B4E813009DC081;
+			productRefGroup = BB4474EF24B4E813009DC081 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB4474ED24B4E813009DC081 /* Arkevia */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB4474EC24B4E813009DC081 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB44750124B4E815009DC081 /* LaunchScreen.storyboard in Resources */,
+				BB4474FE24B4E815009DC081 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB4474EA24B4E813009DC081 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBC4F04424B940FB00CA66DE /* LoginViewController.swift in Sources */,
+				BBC5C3ED24BCF3E40058E249 /* RoundedTextField.swift in Sources */,
+				BBC5C3E924BCDC080058E249 /* RoundedButton.swift in Sources */,
+				BBFF19C824B7BFF400C457DB /* Directory+CoreDataClass.swift in Sources */,
+				BBFF19CF24B7C09D00C457DB /* File+CoreDataProperties.swift in Sources */,
+				BB4474F624B4E813009DC081 /* FileBrowserViewController.swift in Sources */,
+				BBC5C3E624BCDAD80058E249 /* UIView+Ext.swift in Sources */,
+				BBFF19C924B7BFF400C457DB /* Directory+CoreDataProperties.swift in Sources */,
+				BB8C2E6024BC1A8D00F41EAC /* KeychainItemAccessibility.swift in Sources */,
+				BB4474F224B4E813009DC081 /* AppDelegate.swift in Sources */,
+				BBCC63F124B4EDCA0002233F /* NetworkManager.swift in Sources */,
+				BBC5C3EF24BD3B930058E249 /* Temp.swift in Sources */,
+				BBFF19CE24B7C09D00C457DB /* File+CoreDataClass.swift in Sources */,
+				BBC5C3EB24BCEBD80058E249 /* UIStackView+Ext.swift in Sources */,
+				BBC4F04024B855DB00CA66DE /* DirectoryProvider.swift in Sources */,
+				BB4474F424B4E813009DC081 /* SceneDelegate.swift in Sources */,
+				BB8C2E6124BC1A8D00F41EAC /* KeychainWrapper.swift in Sources */,
+				BB4474FC24B4E813009DC081 /* Arkevia.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BB4474FF24B4E815009DC081 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB44750024B4E815009DC081 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BB44750324B4E815009DC081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BB44750424B4E815009DC081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BB44750624B4E815009DC081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K5J3D8PTAW;
+				INFOPLIST_FILE = Arkevia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reqven.Arkevia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB44750724B4E815009DC081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K5J3D8PTAW;
+				INFOPLIST_FILE = Arkevia/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reqven.Arkevia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB4474E924B4E813009DC081 /* Build configuration list for PBXProject "Arkevia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB44750324B4E815009DC081 /* Debug */,
+				BB44750424B4E815009DC081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB44750524B4E815009DC081 /* Build configuration list for PBXNativeTarget "Arkevia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB44750624B4E815009DC081 /* Debug */,
+				BB44750724B4E815009DC081 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BB4474FA24B4E813009DC081 /* Arkevia.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BB4474FB24B4E813009DC081 /* Arkevia.xcdatamodel */,
+			);
+			currentVersion = BB4474FB24B4E813009DC081 /* Arkevia.xcdatamodel */;
+			path = Arkevia.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BB4474E624B4E813009DC081 /* Project object */;
+}

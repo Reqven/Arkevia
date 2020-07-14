@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Directory" representedClassName=".Directory" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="i18n" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="maxUserStorage" optional="YES" attributeType="String"/>
+        <attribute name="mime" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="path" optional="YES" attributeType="String"/>
+        <attribute name="percentUseStorage" optional="YES" attributeType="String"/>
+        <attribute name="read" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="rel" optional="YES" attributeType="String"/>
+        <attribute name="rename" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="rm" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="size" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="userStorage" optional="YES" attributeType="String"/>
+        <attribute name="write" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="directories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Directory" inverseName="parent" inverseEntity="Directory"/>
+        <relationship name="files" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="directory" inverseEntity="File"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Directory" inverseName="directories" inverseEntity="Directory"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="path"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="File" representedClassName=".File" syncable="YES">
+        <attribute name="basepath" attributeType="String"/>
+        <attribute name="date" attributeType="String"/>
+        <attribute name="foldername" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="keywords" attributeType="String"/>
+        <attribute name="mime" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="path" attributeType="String"/>
+        <attribute name="read" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="rename" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="rm" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="sender" attributeType="String"/>
+        <attribute name="share" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="size" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="write" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="directory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Directory" inverseName="files" inverseEntity="Directory"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="Directory" positionX="-464.26171875" positionY="117.02734375" width="128" height="313"/>
+        <element name="File" positionX="-196.390625" positionY="131.6796875" width="128" height="283"/>
+    </elements>
+</model>
