@@ -37,8 +37,8 @@ class LoginViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
             } else {
-                self.saveCredentials()
                 DispatchQueue.main.async {
+                    self.saveCredentials()
                     guard let window = self.view.window else { fatalError() }
                     
                     let transition = CATransition()
