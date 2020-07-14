@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import MobileCoreServices
 
 class NetworkManager {
     
@@ -120,7 +119,7 @@ extension NetworkManager {
                     var requestData = Data()
                     let boundary = UUID().uuidString
                     let fileName = fileUrl.lastPathComponent
-                    let mimeType = self.mimeTypeForPath(path: fileUrl.path)
+                    let mimeType = FileHelper.mimeTypeForPath(path: fileUrl.path)
                     
                     let url = URL(string: "https://www.arkevia.com/safe-secured/browser/upload")!
                     var urlRequest = URLRequest(url: url)
@@ -193,18 +192,5 @@ extension NetworkManager {
             completed(image)
         }
         task.resume()
-    }
-    
-    //TODO: Refactor and move out of this file
-    func mimeTypeForPath(path: String) -> String {
-        let url = NSURL(fileURLWithPath: path)
-        let pathExtension = url.pathExtension
-
-        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension! as NSString, nil)?.takeRetainedValue() {
-            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
-                return mimetype as String
-            }
-        }
-        return "application/octet-stream"
     }
 }

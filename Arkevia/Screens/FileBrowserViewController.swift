@@ -149,7 +149,7 @@ extension FileBrowserViewController: UITableViewDataSource {
             
             default:
                 let item = files[indexPath.row - directories.count]
-                cell.textLabel?.text = item.name
+                cell.textLabel?.text = item.fileName
                 cell.detailTextLabel?.text = item.date
                 cell.imageView?.image = UIImage(systemName: "doc.text.fill")
         }
@@ -303,7 +303,7 @@ extension FileBrowserViewController: UIDocumentPickerDelegate {
         guard let path = path, let url = urls.first else { return }
         
         let fileName = url.deletingPathExtension().lastPathComponent
-        let mimeType = NetworkManager.shared.mimeTypeForPath(path: url.path)
+        let mimeType = FileHelper.mimeTypeForPath(path: url.path)
         
         guard let directory = directory else { return }
         guard !directory.files.contains(where: { fileName == $0.name && mimeType == $0.mime }) else {

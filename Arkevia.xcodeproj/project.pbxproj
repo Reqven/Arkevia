@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB416BF824BDDEDE00330456 /* NSManagedObjectContext+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB416BF724BDDEDE00330456 /* NSManagedObjectContext+Ext.swift */; };
+		BB416BFB24BE408F00330456 /* FileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB416BFA24BE408F00330456 /* FileHelper.swift */; };
 		BB4474F224B4E813009DC081 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4474F124B4E813009DC081 /* AppDelegate.swift */; };
 		BB4474F424B4E813009DC081 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4474F324B4E813009DC081 /* SceneDelegate.swift */; };
 		BB4474F624B4E813009DC081 /* FileBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4474F524B4E813009DC081 /* FileBrowserViewController.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		BB416BF724BDDEDE00330456 /* NSManagedObjectContext+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Ext.swift"; sourceTree = "<group>"; };
+		BB416BFA24BE408F00330456 /* FileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHelper.swift; sourceTree = "<group>"; };
 		BB4474EE24B4E813009DC081 /* Arkevia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arkevia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4474F124B4E813009DC081 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB4474F324B4E813009DC081 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BB416BF924BE403E00330456 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BB416BFA24BE408F00330456 /* FileHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		BB4474E524B4E813009DC081 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +96,7 @@
 		BB4474F024B4E813009DC081 /* Arkevia */ = {
 			isa = PBXGroup;
 			children = (
+				BB416BF924BE403E00330456 /* Utilities */,
 				BBC5C3E324BCDA9B0058E249 /* Extensions */,
 				BBC4F04524B9412400CA66DE /* Managers */,
 				BBC4F04624B9414D00CA66DE /* Models */,
@@ -273,6 +284,7 @@
 				BB4474F424B4E813009DC081 /* SceneDelegate.swift in Sources */,
 				BB8C2E6124BC1A8D00F41EAC /* KeychainWrapper.swift in Sources */,
 				BB4474FC24B4E813009DC081 /* Arkevia.xcdatamodeld in Sources */,
+				BB416BFB24BE408F00330456 /* FileHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

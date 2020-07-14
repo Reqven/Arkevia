@@ -13,6 +13,11 @@ import CoreData
 @objc(File)
 public class File: NSManagedObject, Codable {
 
+    public var fileName: String {
+        guard let fileExtension = FileHelper.extensionForMimeType(mime: mime) else { return name }
+        return "\(name).\(fileExtension)"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case keywords
         case rm
