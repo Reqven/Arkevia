@@ -20,6 +20,10 @@ public class Directory: NSManagedObject, Codable {
         return Array(self.files)
     }
     
+    public var itemsCount: Int {
+        return directories.count + files.count
+    }
+    
     enum CodingKeys: String, CodingKey {
         case name
         case path = "techid"

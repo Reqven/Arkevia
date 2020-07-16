@@ -20,7 +20,7 @@ class FileCell: UITableViewCell {
     }
     
     func setupViews() {
-        
+        detailTextLabel?.textColor = .secondaryLabel
     }
 }
 
@@ -30,7 +30,7 @@ extension FileCell {
     func setup(with file: File) {
         textLabel?.text = file.fileName
         detailTextLabel?.text = file.date
-        imageView?.image = UIImage(systemName: "doc.text.fill")
+        imageView?.image = UIImage(systemName: "doc.fill")
         
         setNeedsLayout()
     }

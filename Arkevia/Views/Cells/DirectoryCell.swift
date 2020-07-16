@@ -21,6 +21,7 @@ class DirectoryCell: UITableViewCell {
     
     func setupViews() {
         accessoryType = .disclosureIndicator
+        detailTextLabel?.textColor = .secondaryLabel
     }
 }
 
@@ -29,6 +30,8 @@ extension DirectoryCell {
 
     func setup(with directory: Directory) {
         textLabel?.text = directory.name
+        detailTextLabel?.text = "\(String(directory.itemsCount)) items"
+        
         if case "recyclebin" = directory.type {
             imageView?.image = UIImage(systemName: "trash.fill")
         } else {
