@@ -76,6 +76,16 @@ class FileBrowserViewController: UIViewController {
         documentPicker.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(documentPicker, animated: true, completion: nil)
     }
+    
+    @objc func emptyBin() {
+        spinner.startAnimating()
+        dataProvider.emptyBin { error in
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+                self.handleUploadOperationCompletion(error: error)
+            }
+        }
+    }
 }
 
 
@@ -103,18 +113,24 @@ extension FileBrowserViewController {
     }
     
     private func setupNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
         title = name ?? DirectoryProvider.rootName
-        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = name == nil ? .always : .never
+
         spinner.hidesWhenStopped = true
         spinner.color = .gray
         
-        let barButton = UIBarButtonItem(customView: spinner)
+        let spinnerButton = UIBarButtonItem(customView: spinner)
         let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentDocumentPicker))
-        //self.navigationItem.setRightBarButton(barButton, animated: true)
-        //self.navigationItem.setLeftBarButton(uploadButton, animated: true)
-        self.navigationItem.setRightBarButtonItems([barButton, uploadButton], animated: true)
-
+        let emptyBinButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(emptyBin))
+        
+        var barButtons = [spinnerButton]
+        if let path = path, path == "/MySafe/MyRecycleBin/" {
+            barButtons.append(emptyBinButton)
+        } else {
+            barButtons.append(uploadButton)
+        }
+        navigationItem.rightBarButtonItems = barButtons.reversed()
         setupSearchBar()
     }
     
@@ -193,6 +209,51 @@ extension FileBrowserViewController: UITableViewDelegate {
             default:
                 let file = files[indexPath.row - directories.count]
                 download(file)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+
+        guard let directory = directory else { return nil }
+        
+        let directories = directory.directoriesArray.sorted { $0.name < $1.name }
+        let files = directory.filesArray.sorted { $0.name < $1.name }
+        
+        switch indexPath.row {
+            case let index where index < directories.count:
+                return nil
+            
+            default:
+                let file = files[indexPath.row - directories.count]
+                let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+                    
+                    self.spinner.startAnimating()
+                    self.dataProvider.delete(files: [file]) { error in
+                        
+                        DispatchQueue.main.async {
+                            self.spinner.stopAnimating()
+                            
+                            if let error = error {
+                                completion(false)
+                                print(error)
+                                
+                                let alert = UIAlertController(
+                                    title: "Delete failed",
+                                    message: "An error occured while trying to delete this file.",
+                                    preferredStyle: .alert
+                                )
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            } else {
+                                completion(true)
+                                self.load()
+                            }
+                        }
+                    }
+                }
+                deleteAction.image = UIImage(named: "delete-icon")
+                return UISwipeActionsConfiguration(actions: [deleteAction])
+                
         }
     }
 }

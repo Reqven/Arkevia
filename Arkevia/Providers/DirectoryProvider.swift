@@ -15,6 +15,8 @@ class DirectoryProvider {
     static let rootPath = "/MySafe/"
     private let openAction = "https://www.arkevia.com/safe-secured/browser/open.action"
     private let openFolderAction = "https://www.arkevia.com/safe-secured/browser/openFolder.action"
+    private let deleteDefinitly = "https://www.arkevia.com/safe-secured/browser/deleteDefinitly.action"
+    private let deleteTemporarilyAction = "https://www.arkevia.com/safe-secured/browser/deleteTemporarily.action"
     
     
     lazy var persistentContainer: NSPersistentContainer = {
@@ -74,6 +76,7 @@ class DirectoryProvider {
         context.delete(objects: fetchNotIn(directory: directory, context: context))
         
         if let cached = fetchPersisted(path: directory.path, context: context) {
+            directory.name = cached.name
             if let parent = cached.parent {
                 directory.parent = parent
             }
@@ -164,6 +167,90 @@ class DirectoryProvider {
                                 }
                                 taskContext.reset()
                             }
+                        }
+                        completionHandler(nil)
+                    }
+                    task.resume()
+            }
+        }
+    }
+    
+    
+    func delete(files: [File], completionHandler: @escaping (Error?) -> Void) {
+        
+        var queryItems = [
+            URLQueryItem(name: "lastOperation", value: "openFolder"),
+            URLQueryItem(name: "cmd", value: "deleteTemporarily")
+        ]
+        files.forEach { file in
+            queryItems.append(contentsOf: [
+                URLQueryItem(name: "currentFolders", value: file.path),
+                URLQueryItem(name: "targets", value: file.id),
+            ])
+        }
+        var urlComponents = URLComponents(string: deleteTemporarilyAction)!
+        urlComponents.queryItems = queryItems
+        print(urlComponents.url!)
+        
+        NetworkManager.shared.loadUser { result in
+            switch(result) {
+                case .failure(let error):
+                    completionHandler(error)
+                case .success(_):
+            
+                    let session = URLSession(configuration: .default)
+                    let task = session.dataTask(with: urlComponents.url!) { data, _, urlSessionError in
+                        guard urlSessionError == nil else {
+                            completionHandler(urlSessionError)
+                            return
+                        }
+                        guard let data = data else {
+                            completionHandler(NSError(domain: "Network Unavailable", code: 0))
+                            return
+                        }
+                        guard !String(decoding: data, as: UTF8.self).contains("error") else {
+                            completionHandler(NSError(domain: "Unknown error", code: 0))
+                            return
+                        }
+                        completionHandler(nil)
+                    }
+                    task.resume()
+            }
+        }
+    }
+    
+    
+    func emptyBin(completionHandler: @escaping (Error?) -> Void) {
+        
+        NetworkManager.shared.loadUser { result in
+            switch(result) {
+                case .failure(let error):
+                    completionHandler(error)
+                case .success(_):
+                    
+                    let queryItems = [
+                        URLQueryItem(name: "cmd", value: "deleteDefinitly"),
+                        URLQueryItem(name: "target", value: "/MySafe/MyRecycleBin/")
+                    ]
+                    var urlComponents = URLComponents(string: self.deleteDefinitly)!
+                    urlComponents.queryItems = queryItems
+                    
+                    let session = URLSession(configuration: .default)
+                    let task = session.dataTask(with: urlComponents.url!) { data, _, urlSessionError in
+                        guard urlSessionError == nil else {
+                            completionHandler(urlSessionError)
+                            return
+                        }
+                        guard let data = data else {
+                            completionHandler(NSError(domain: "Network Unavailable", code: 0))
+                            return
+                        }
+                        
+                        print(String(decoding: data, as: UTF8.self))
+                        
+                        guard !String(decoding: data, as: UTF8.self).contains("error") else {
+                            completionHandler(NSError(domain: "Unknown error", code: 0))
+                            return
                         }
                         completionHandler(nil)
                     }
