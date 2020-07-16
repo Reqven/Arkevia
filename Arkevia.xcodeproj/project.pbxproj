@@ -15,6 +15,8 @@
 		BB4474FC24B4E813009DC081 /* Arkevia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BB4474FA24B4E813009DC081 /* Arkevia.xcdatamodeld */; };
 		BB4474FE24B4E815009DC081 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB4474FD24B4E815009DC081 /* Assets.xcassets */; };
 		BB44750124B4E815009DC081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4474FF24B4E815009DC081 /* LaunchScreen.storyboard */; };
+		BB5C8F3D24C0B3B000828145 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C8F3C24C0B3B000828145 /* FileCell.swift */; };
+		BB5C8F3F24C0B42C00828145 /* DirectoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C8F3E24C0B42C00828145 /* DirectoryCell.swift */; };
 		BB8C2E6024BC1A8D00F41EAC /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C2E5E24BC1A8D00F41EAC /* KeychainItemAccessibility.swift */; };
 		BB8C2E6124BC1A8D00F41EAC /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C2E5F24BC1A8D00F41EAC /* KeychainWrapper.swift */; };
 		BBC4F04024B855DB00CA66DE /* DirectoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4F03F24B855DB00CA66DE /* DirectoryProvider.swift */; };
@@ -42,6 +44,8 @@
 		BB4474FD24B4E815009DC081 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB44750024B4E815009DC081 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB44750224B4E815009DC081 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB5C8F3C24C0B3B000828145 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
+		BB5C8F3E24C0B42C00828145 /* DirectoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryCell.swift; sourceTree = "<group>"; };
 		BB8C2E5E24BC1A8D00F41EAC /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		BB8C2E5F24BC1A8D00F41EAC /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		BBC4F03F24B855DB00CA66DE /* DirectoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryProvider.swift; sourceTree = "<group>"; };
@@ -114,6 +118,15 @@
 			path = Arkevia;
 			sourceTree = "<group>";
 		};
+		BB5C8F3B24C0B36300828145 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C8F3C24C0B3B000828145 /* FileCell.swift */,
+				BB5C8F3E24C0B42C00828145 /* DirectoryCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		BB8C2E5D24BC1A5F00F41EAC /* Security */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,8 +186,9 @@
 		BBC5C3E424BCDAA10058E249 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BBC5C3F024BD3F470058E249 /* TextField */,
+				BB5C8F3B24C0B36300828145 /* Cells */,
 				BBC5C3E724BCDB430058E249 /* Buttons */,
+				BBC5C3F024BD3F470058E249 /* TextFields */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,12 +201,12 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		BBC5C3F024BD3F470058E249 /* TextField */ = {
+		BBC5C3F024BD3F470058E249 /* TextFields */ = {
 			isa = PBXGroup;
 			children = (
 				BBC5C3EC24BCF3E40058E249 /* RoundedTextField.swift */,
 			);
-			path = TextField;
+			path = TextFields;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,11 +288,13 @@
 				BBC5C3E624BCDAD80058E249 /* UIView+Ext.swift in Sources */,
 				BBFF19C924B7BFF400C457DB /* Directory+CoreDataProperties.swift in Sources */,
 				BB8C2E6024BC1A8D00F41EAC /* KeychainItemAccessibility.swift in Sources */,
+				BB5C8F3D24C0B3B000828145 /* FileCell.swift in Sources */,
 				BB4474F224B4E813009DC081 /* AppDelegate.swift in Sources */,
 				BBCC63F124B4EDCA0002233F /* NetworkManager.swift in Sources */,
 				BBC5C3EF24BD3B930058E249 /* Temp.swift in Sources */,
 				BBFF19CE24B7C09D00C457DB /* File+CoreDataClass.swift in Sources */,
 				BB416BF824BDDEDE00330456 /* NSManagedObjectContext+Ext.swift in Sources */,
+				BB5C8F3F24C0B42C00828145 /* DirectoryCell.swift in Sources */,
 				BBC5C3EB24BCEBD80058E249 /* UIStackView+Ext.swift in Sources */,
 				BBC4F04024B855DB00CA66DE /* DirectoryProvider.swift in Sources */,
 				BB4474F424B4E813009DC081 /* SceneDelegate.swift in Sources */,

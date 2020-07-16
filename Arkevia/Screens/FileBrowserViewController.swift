@@ -102,7 +102,8 @@ extension FileBrowserViewController {
     
     private func setupTableView() {
         tableView = UITableView(frame: view.bounds, style: .plain)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(FileCell.self, forCellReuseIdentifier: "FileCell")
+        tableView.register(DirectoryCell.self, forCellReuseIdentifier: "DirectoryCell")
         
         tableView.tableFooterView = UIView()
         tableView.dataSource = self
@@ -155,32 +156,26 @@ extension FileBrowserViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         //TODO: Refactor
-        guard let directory = directory else { return cell }
+        guard let directory = directory else { return UITableViewCell() }
         let directories = directory.directoriesArray.sorted { $0.name < $1.name }
         let files = directory.filesArray.sorted { $0.name < $1.name }
         
         switch indexPath.row {
             case let index where index < directories.count:
-                let item = directories[indexPath.row]
-                cell.textLabel?.text = item.name
-                cell.accessoryType = .disclosureIndicator
-                
-                if case "recyclebin" = item.type {
-                    cell.imageView?.image = UIImage(systemName: "trash.fill")
-                } else {
-                    cell.imageView?.image = UIImage(systemName: "folder.fill")
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "DirectoryCell", for: indexPath) as? DirectoryCell {
+                    cell.setup(with: directories[indexPath.row])
+                    return cell
                 }
             
             default:
-                let item = files[indexPath.row - directories.count]
-                cell.textLabel?.text = item.fileName
-                cell.detailTextLabel?.text = item.date
-                cell.imageView?.image = UIImage(systemName: "doc.text.fill")
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell", for: indexPath) as? FileCell {
+                    cell.setup(with: files[indexPath.row - directories.count])
+                    return cell
+                }
         }
-        return cell
+        return UITableViewCell()
     }
 }
 
