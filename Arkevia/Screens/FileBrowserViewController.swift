@@ -43,9 +43,6 @@ class FileBrowserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         load()
     }
     
@@ -59,7 +56,21 @@ class FileBrowserViewController: UIViewController {
         }
     }
     
-    @objc func upload() {
+    @objc func upload(file: URL, to path: String) {
+        spinner.startAnimating()
+        NetworkManager.shared.upload(file: file, to: path) { result in
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+                if case .failure(let error) = result {
+                    self.handleUploadOperationCompletion(error: error)
+                } else {
+                    self.handleUploadOperationCompletion(error: nil)
+                }
+            }
+        }
+    }
+    
+    @objc func presentDocumentPicker() {
         let documentPicker = UIDocumentPickerViewController(documentTypes: ["public.item"], in: .import)
         documentPicker.delegate = self
         documentPicker.modalPresentationStyle = UIModalPresentationStyle.fullScreen
@@ -99,7 +110,7 @@ extension FileBrowserViewController {
         spinner.color = .gray
         
         let barButton = UIBarButtonItem(customView: spinner)
-        let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(upload))
+        let uploadButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentDocumentPicker))
         //self.navigationItem.setRightBarButton(barButton, animated: true)
         //self.navigationItem.setLeftBarButton(uploadButton, animated: true)
         self.navigationItem.setRightBarButtonItems([barButton, uploadButton], animated: true)
@@ -224,8 +235,7 @@ extension FileBrowserViewController: NSFetchedResultsControllerDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         } else {
-            resetAndRefetch()
-            tableView.reloadData()
+            load()
         }
     }
     
@@ -316,17 +326,7 @@ extension FileBrowserViewController: UIDocumentPickerDelegate {
             present(alert, animated: true, completion: nil)
             return
         }
-        
-        //TODO: Refactor
-        NetworkManager.shared.upload(path: path, fileUrl: url) { result in
-            DispatchQueue.main.async {
-                if case .failure(let error) = result {
-                    self.handleUploadOperationCompletion(error: error)
-                } else {
-                    self.handleUploadOperationCompletion(error: nil)
-                }
-            }
-        }
+        upload(file: url, to: path)
     }
 }
 

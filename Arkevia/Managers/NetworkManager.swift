@@ -104,7 +104,7 @@ extension NetworkManager {
 
     
     //TODO: Refactor
-    func upload(path: String, fileUrl: URL, completed: @escaping (Result<Any, Error>) -> Void) {
+    func upload(file: URL, to path: String, completed: @escaping (Result<Any, Error>) -> Void) {
         
         loadUser { result in
             switch(result) {
@@ -112,14 +112,14 @@ extension NetworkManager {
                     completed(.failure(error))
                 case .success(_):
                     
-                    guard let fileData = try? Data(contentsOf: fileUrl) else {
+                    guard let fileData = try? Data(contentsOf: file) else {
                         completed(.failure(NSError(domain: "Data", code: 0)))
                         return
                     }
                     var requestData = Data()
                     let boundary = UUID().uuidString
-                    let fileName = fileUrl.lastPathComponent
-                    let mimeType = FileHelper.mimeTypeForPath(path: fileUrl.path)
+                    let fileName = file.lastPathComponent
+                    let mimeType = FileHelper.mimeTypeForPath(path: file.path)
                     
                     let url = URL(string: "https://www.arkevia.com/safe-secured/browser/upload")!
                     var urlRequest = URLRequest(url: url)
