@@ -17,6 +17,7 @@
 		BB44750124B4E815009DC081 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB4474FF24B4E815009DC081 /* LaunchScreen.storyboard */; };
 		BB5C8F3D24C0B3B000828145 /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C8F3C24C0B3B000828145 /* FileCell.swift */; };
 		BB5C8F3F24C0B42C00828145 /* DirectoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C8F3E24C0B42C00828145 /* DirectoryCell.swift */; };
+		BB5C8F4124C19AA500828145 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5C8F4024C19AA500828145 /* FileViewController.swift */; };
 		BB8C2E6024BC1A8D00F41EAC /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C2E5E24BC1A8D00F41EAC /* KeychainItemAccessibility.swift */; };
 		BB8C2E6124BC1A8D00F41EAC /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8C2E5F24BC1A8D00F41EAC /* KeychainWrapper.swift */; };
 		BBC4F04024B855DB00CA66DE /* DirectoryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC4F03F24B855DB00CA66DE /* DirectoryProvider.swift */; };
@@ -46,6 +47,7 @@
 		BB44750224B4E815009DC081 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB5C8F3C24C0B3B000828145 /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		BB5C8F3E24C0B42C00828145 /* DirectoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryCell.swift; sourceTree = "<group>"; };
+		BB5C8F4024C19AA500828145 /* FileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		BB8C2E5E24BC1A8D00F41EAC /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		BB8C2E5F24BC1A8D00F41EAC /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		BBC4F03F24B855DB00CA66DE /* DirectoryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryProvider.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				BBC4F04324B940FB00CA66DE /* LoginViewController.swift */,
 				BB4474F524B4E813009DC081 /* FileBrowserViewController.swift */,
+				BB5C8F4024C19AA500828145 /* FileViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				BBC4F04024B855DB00CA66DE /* DirectoryProvider.swift in Sources */,
 				BB4474F424B4E813009DC081 /* SceneDelegate.swift in Sources */,
 				BB8C2E6124BC1A8D00F41EAC /* KeychainWrapper.swift in Sources */,
+				BB5C8F4124C19AA500828145 /* FileViewController.swift in Sources */,
 				BB4474FC24B4E813009DC081 /* Arkevia.xcdatamodeld in Sources */,
 				BB416BFB24BE408F00330456 /* FileHelper.swift in Sources */,
 			);

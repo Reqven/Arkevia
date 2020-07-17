@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
     private var passwordField = RoundedTextField()
     private var loginButton = RoundedButton()
     
+    
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
@@ -58,6 +60,12 @@ class LoginViewController: UIViewController {
         KeychainWrapper.standard.set(username, forKey: "username")
         KeychainWrapper.standard.set(password, forKey: "password")
     }
+}
+
+
+
+// MARK: - Setup
+extension LoginViewController {
     
     private func initialSetup() {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))

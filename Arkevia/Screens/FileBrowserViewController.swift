@@ -15,7 +15,6 @@ class FileBrowserViewController: UIViewController {
     var path: String?
     var name: String?
     var tableView: UITableView!
-    var documentInteractionController: UIDocumentInteractionController!
     
     private lazy var dataProvider = DirectoryProvider()
     private lazy var spinner = UIActivityIndicatorView(style: .medium)
@@ -203,7 +202,8 @@ extension FileBrowserViewController: UITableViewDelegate {
             
             default:
                 let file = files[indexPath.row - directories.count]
-                download(file)
+                let controller = FileViewController(with: file)
+                navigationController?.pushViewController(controller, animated: true)
         }
     }
     
@@ -301,58 +301,6 @@ extension FileBrowserViewController: NSFetchedResultsControllerDelegate {
             try fetchedResultsController.performFetch()
         } catch {
             fatalError("Unresolved error \(error)")
-        }
-    }
-}
-
-
-
-// MARK: - FileDownload
-extension FileBrowserViewController {
-    
-    private func downloadURL(for file: File) -> URL? {
-        let queryItems = [URLQueryItem(name: "currentFolder", value: file.path), URLQueryItem(name: "target", value: file.id)]
-        var urlComponents = URLComponents(string: "https://www.arkevia.com/safe-secured/browser/openFile.action")!
-        urlComponents.queryItems = queryItems
-        
-        return urlComponents.url
-    }
-    
-    private func download(_ file: File) {
-        guard let url = downloadURL(for: file) else { return }
-    
-        let downloadTask = URLSession.shared.downloadTask(with: url) { location, response, error in
-            guard let location = location else { return }
-            
-            let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-            let destinationURL = documentsPath.appendingPathComponent(file.idFileName)
-            try? FileManager.default.removeItem(at: destinationURL)
-            
-            do {
-                try FileManager.default.copyItem(at: location, to: destinationURL)
-                self.preview(destinationURL)
-            } catch let error {
-                print("Copy Error: \(error.localizedDescription)")
-            }
-        }
-        downloadTask.resume()
-    }
-}
-
-
-
-// MARK: - UIDocumentInteractionControllerDelegate
-extension FileBrowserViewController: UIDocumentInteractionControllerDelegate {
-    
-    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
-        return self
-    }
-    
-    private func preview(_ url: URL) {
-        documentInteractionController = UIDocumentInteractionController(url: url)
-        documentInteractionController.delegate = self
-        DispatchQueue.main.async {
-            self.documentInteractionController.presentPreview(animated: true)
         }
     }
 }
