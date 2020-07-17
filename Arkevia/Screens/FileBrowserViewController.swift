@@ -307,23 +307,8 @@ extension FileBrowserViewController: NSFetchedResultsControllerDelegate {
 
 
 
-// MARK: - URLSessionDownloadDelegate
-extension FileBrowserViewController:  URLSessionDownloadDelegate {
-    
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        guard let url = downloadTask.originalRequest?.url else { return }
-        
-        let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        let destinationURL = documentsPath.appendingPathComponent("\(url.lastPathComponent).pdf")
-        try? FileManager.default.removeItem(at: destinationURL)
-        
-        do {
-            try FileManager.default.copyItem(at: location, to: destinationURL)
-            preview(destinationURL)
-        } catch let error {
-            print("Copy Error: \(error.localizedDescription)")
-        }
-    }
+// MARK: - FileDownload
+extension FileBrowserViewController {
     
     private func downloadURL(for file: File) -> URL? {
         let queryItems = [URLQueryItem(name: "currentFolder", value: file.path), URLQueryItem(name: "target", value: file.id)]
@@ -335,9 +320,21 @@ extension FileBrowserViewController:  URLSessionDownloadDelegate {
     
     private func download(_ file: File) {
         guard let url = downloadURL(for: file) else { return }
-        
-        let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
-        let downloadTask = urlSession.downloadTask(with: url)
+    
+        let downloadTask = URLSession.shared.downloadTask(with: url) { location, response, error in
+            guard let location = location else { return }
+            
+            let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+            let destinationURL = documentsPath.appendingPathComponent(file.fileName)
+            try? FileManager.default.removeItem(at: destinationURL)
+            
+            do {
+                try FileManager.default.copyItem(at: location, to: destinationURL)
+                self.preview(destinationURL)
+            } catch let error {
+                print("Copy Error: \(error.localizedDescription)")
+            }
+        }
         downloadTask.resume()
     }
 }
