@@ -325,7 +325,7 @@ extension FileBrowserViewController {
             guard let location = location else { return }
             
             let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-            let destinationURL = documentsPath.appendingPathComponent(file.fileName)
+            let destinationURL = documentsPath.appendingPathComponent(file.idFileName)
             try? FileManager.default.removeItem(at: destinationURL)
             
             do {

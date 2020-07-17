@@ -30,5 +30,14 @@ enum FileHelper {
         guard let value = fileExtension else { return nil }
         return value as String
     }
+    
+    static func safeFileName(of fileName: String) -> String {
+        var illegalCharacters = CharacterSet(charactersIn: ":/")
+        illegalCharacters.formUnion(.newlines)
+        illegalCharacters.formUnion(.illegalCharacters)
+        illegalCharacters.formUnion(.controlCharacters)
+
+        return fileName.components(separatedBy: illegalCharacters).joined(separator: "")
+    }
 }
 

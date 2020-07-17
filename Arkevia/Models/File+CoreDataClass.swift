@@ -18,6 +18,12 @@ public class File: NSManagedObject, Codable {
         return "\(name).\(fileExtension)"
     }
     
+    public var idFileName: String {
+        let safeFileName = FileHelper.safeFileName(of: id)
+        guard let fileExtension = FileHelper.extensionForMimeType(mime: mime) else { return safeFileName }
+        return "\(safeFileName).\(fileExtension)"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case keywords
         case rm
